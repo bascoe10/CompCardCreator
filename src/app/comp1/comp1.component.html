@@ -5,7 +5,7 @@
       <div class="grid-item photo-2">2</div>
       <div class="grid-item photo-3">3</div>
       <div class="text">
-        <div class="name">Adama Cherif</div>
+        <div class="name">{{ model.name }}</div>
         <div class="desc">
           <div class="height">Height: 5' 9"</div>
           <div class="weight">weight: 120</div>
@@ -23,4 +23,10 @@
       </div>
     </div>
   </div>
+</div>
+<div class="comp-form">
+  <label for="name"
+    >Name:
+    <input [(ngModel)]="model.name" />
+  </label>
 </div>

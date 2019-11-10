@@ -1,1 +1,3 @@
-<p>theme-selector works!</p>
+<li *ngFor="let card of CompCards" routerLink="{{ card.link }}">
+  {{ card.title }}
+</li>

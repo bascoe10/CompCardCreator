@@ -33,4 +33,21 @@ export class Comp1Component implements OnInit {
       name.style.fontSize = fontSize.toString() + "px";
     }
   }
+
+  processImage(imageInput) {
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
+
+    let div = <HTMLElement>document.querySelector("#photo-1");
+
+    reader.addEventListener("load", (event: any) => {
+      // this.selectedFile = new ImageSnippet(event.target.result, file);
+      // console.log(event.target);
+
+      div.style.background = `url(${event.target.result})`;
+      div.style.backgroundSize = "cover";
+    });
+
+    reader.readAsDataURL(file);
+  }
 }

@@ -2,7 +2,7 @@
   <div class="comp comp-card">
     <div class="card blue-grey darken-1">
       <div class="card-content white-text comp-content">
-        <div class="grid-item photo-1">1</div>
+        <div class="grid-item photo-1" id="photo-1">1</div>
         <div class="grid-item photo-2">2</div>
         <div class="grid-item photo-3">3</div>
         <div class="text">
@@ -38,7 +38,20 @@
         <div class="row" *ngFor="let attr of model.attributes()">
           <div class="input-field">
             <input id="{{ attr }}" type="text" [(ngModel)]="model[attr]" />
-            <label for="weight">{{ attr }}</label>
+            <label for="{{ attr }}">{{ attr }}</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field">
+            <input
+              #imageInput
+              type="file"
+              accept="image/*"
+              (change)="processImage(imageInput)"
+              id="image-1"
+            />
+            <label for="image-1">Image 1</label>
           </div>
         </div>
       </div>

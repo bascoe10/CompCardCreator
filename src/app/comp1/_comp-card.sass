@@ -1,0 +1,53 @@
+.comp-card
+    width: 612px
+    height: 792px
+    box-sizing: border-box
+    display: block
+    margin: 0
+
+    .comp-content
+        display: grid
+        box-shadow: 5px 5px 5px #777777
+        grid-template-columns: 1fr 1fr
+        grid-auto-rows: 335px 335px auto
+        gap: 15px
+
+    .grid-item
+        text-align: center
+        // font-size: 40px
+        // line-height: 250px
+        border: 2px dashed #a6a6a6
+
+    .photo-1
+        background: no-repeat url("../../assets/img/IMG_3191.jpg")
+        background-size: cover
+
+    .photo-2
+        background: no-repeat url("../../assets/img/IMG_3191.jpg")
+        background-size: cover
+
+    .photo-3
+        background: no-repeat url("../../assets/img/IMG_3191.jpg")
+        background-size: cover
+
+    .text
+        font-size: 15px
+        text-align: center
+        box-sizing: border-box
+
+        .name
+            font-size: 40px
+            width: 256.22px
+            text-transform: uppercase
+            letter-spacing: 0.25em
+            padding-bottom: 20px
+            overflow: hidden
+
+        .desc
+            text-align: left
+            padding-left: 30%
+
+    .contact
+        letter-spacing: 0.05em
+        grid-column: 1 / span 2
+        font-size: 20px

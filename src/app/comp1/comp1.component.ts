@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 
+import fitty from "fitty";
+
 import { Model } from "../models/model";
 
 @Component({
@@ -13,4 +15,22 @@ export class Comp1Component implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  adjustToFitDiv() {
+    let name = <HTMLElement>document.querySelector("#name-id");
+    let style = getComputedStyle(name);
+
+    if (!style) style = name.style;
+    var fontSize = parseInt(style.fontSize);
+
+    if (name.scrollWidth < 256.22) {
+      name.style.fontSize = "40px";
+      return;
+    }
+
+    while (name.scrollWidth >= 256.22) {
+      fontSize--;
+      name.style.fontSize = fontSize.toString() + "px";
+    }
+  }
 }

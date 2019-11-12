@@ -34,16 +34,14 @@ export class Comp1Component implements OnInit {
     }
   }
 
-  processImage(imageInput) {
+  processImage(imageInput, selector) {
+    console.log(imageInput);
     const file: File = imageInput.files[0];
     const reader = new FileReader();
 
-    let div = <HTMLElement>document.querySelector("#photo-1");
+    let div = <HTMLElement>document.querySelector(`#${selector}`);
 
     reader.addEventListener("load", (event: any) => {
-      // this.selectedFile = new ImageSnippet(event.target.result, file);
-      // console.log(event.target);
-
       div.style.background = `url(${event.target.result})`;
       div.style.backgroundSize = "cover";
     });

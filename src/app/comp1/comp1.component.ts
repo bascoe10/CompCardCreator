@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 
 import fitty from "fitty";
+import html2canvas from "html2canvas";
 
 import { Model } from "../models/model";
 
@@ -47,5 +48,14 @@ export class Comp1Component implements OnInit {
     });
 
     reader.readAsDataURL(file);
+  }
+
+  downloadCard() {
+    window.scrollTo(0, 0);
+    html2canvas(document.querySelector("#comp-card")).then(function(canvas) {
+      window.location.assign(canvas.toDataURL());
+      // window.open().document.write('<img src="' + canvas.toDataURL() + '" />');
+      // document.body.appendChild(canvas);
+    });
   }
 }

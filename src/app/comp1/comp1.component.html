@@ -48,7 +48,7 @@
               #imageInput
               type="file"
               accept="image/*"
-              (change)="processImage(imageInput, 'photo-1')"
+              (change)="fileChangeEvent($event, 'photo-1')"
               id="image-1"
             />
             <label for="image-1">Image 1</label>
@@ -60,7 +60,7 @@
               #imageInput
               type="file"
               accept="image/*"
-              (change)="processImage(imageInput, 'photo-2')"
+              (change)="fileChangeEvent($event, 'photo-2')"
               id="image-2"
             />
             <label for="image-2">Image 2</label>
@@ -72,7 +72,7 @@
               #imageInput
               type="file"
               accept="image/*"
-              (change)="processImage(imageInput, 'photo-3')"
+              (change)="fileChangeEvent($event, 'photo-3')"
               id="image-3"
             />
             <label for="image-3">Image 3</label>
@@ -84,4 +84,17 @@
   <a class="waves-effect waves-light btn-large" (click)="downloadCard()"
     >Download</a
   >
+</div>
+<div>
+  <image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="6559232000000001 / 8576000000000000"
+    [resizeToWidth]="256.22"
+    format="png"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded()"
+    (cropperReady)="cropperReady()"
+    (loadImageFailed)="loadImageFailed()"
+  ></image-cropper>
 </div>

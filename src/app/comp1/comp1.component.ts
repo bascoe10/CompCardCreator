@@ -17,6 +17,29 @@ export class Comp1Component implements OnInit {
 
   ngOnInit() {}
 
+  imageChangedEvent: any = "";
+  croppedImage: any = "";
+  imageElement: HTMLElement;
+
+  fileChangeEvent(event: any, selector: any): void {
+    this.imageChangedEvent = event;
+    this.imageElement = <HTMLElement>document.querySelector(`#${selector}`);
+  }
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.base64;
+    this.imageElement.style.background = `url(${this.croppedImage})`;
+    this.imageElement.style.backgroundSize = "cover";
+  }
+  imageLoaded() {
+    // show cropper
+  }
+  cropperReady() {
+    // cropper ready
+  }
+  loadImageFailed() {
+    // show message
+  }
+
   adjustToFitDiv() {
     let name = <HTMLElement>document.querySelector("#name-id");
     let style = getComputedStyle(name);

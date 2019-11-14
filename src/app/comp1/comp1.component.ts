@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { ImageCroppedEvent } from "ngx-image-cropper";
 
-import fitty from "fitty";
 import html2canvas from "html2canvas";
 
 import { Model } from "../models/model";
@@ -17,11 +17,21 @@ export class Comp1Component implements OnInit {
 
   ngOnInit() {}
 
+  ngAfterViewInit() {
+    document.addEventListener("DOMContentLoaded", function() {
+      var elems = document.querySelectorAll(".modal");
+      var options = {};
+      var instances = M.Modal.init(elems, options);
+    });
+  }
+
   imageChangedEvent: any = "";
   croppedImage: any = "";
   imageElement: HTMLElement;
 
   fileChangeEvent(event: any, selector: any): void {
+    var instance = M.Modal.getInstance(document.querySelector(`#modal1`));
+    instance.open();
     this.imageChangedEvent = event;
     this.imageElement = <HTMLElement>document.querySelector(`#${selector}`);
   }

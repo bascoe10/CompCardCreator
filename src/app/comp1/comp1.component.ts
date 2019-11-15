@@ -20,11 +20,23 @@ export class Comp1Component implements OnInit {
   ngOnInit() {}
 
   ngAfterViewInit() {
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", () => {
       var elems = document.querySelectorAll(".modal");
       var options = {};
       var instances = M.Modal.init(elems, options);
       M.updateTextFields();
+    });
+
+    document.addEventListener("scroll", () => {
+      console.log("Here");
+      let compCardContainer = document.querySelector("#comp-card-container");
+      let cardOffset = compCardContainer.offsetTop;
+
+      if (window.pageYOffset > cardOffset) {
+        compCardContainer.classList.add("sticky");
+      } else {
+        compCardContainer.classList.remove("sticky");
+      }
     });
   }
 

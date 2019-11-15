@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ImageCroppedEvent } from "ngx-image-cropper";
 
 import html2canvas from "html2canvas";
+import M from "materialize-css";
 
 import { Model } from "../models/model";
 
@@ -37,9 +38,13 @@ export class Comp1Component implements OnInit {
   }
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;
+  }
+
+  doneEditing() {
     this.imageElement.style.background = `url(${this.croppedImage})`;
     this.imageElement.style.backgroundSize = "cover";
   }
+
   imageLoaded() {
     // show cropper
   }

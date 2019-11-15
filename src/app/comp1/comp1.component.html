@@ -40,8 +40,8 @@
           </div>
         </div>
 
-        <div class="row" *ngFor="let attr of model.attributes()">
-          <div class="input-field">
+        <div class="row">
+          <div class="input-field" *ngFor="let attr of model.attributes()">
             <input id="{{ attr }}" type="text" [(ngModel)]="model[attr]" />
             <label for="{{ attr }}">{{ attr }}</label>
           </div>

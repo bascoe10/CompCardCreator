@@ -23,6 +23,7 @@ export class Comp1Component implements OnInit {
       var elems = document.querySelectorAll(".modal");
       var options = {};
       var instances = M.Modal.init(elems, options);
+      M.updateTextFields();
     });
   }
 

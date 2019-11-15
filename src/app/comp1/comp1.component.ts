@@ -13,6 +13,7 @@ import { Model } from "../models/model";
 })
 export class Comp1Component implements OnInit {
   model = new Model();
+  photoIndices = [1, 2, 3];
 
   constructor() {}
 
@@ -31,8 +32,9 @@ export class Comp1Component implements OnInit {
   croppedImage: any = "";
   imageElement: HTMLElement;
 
-  fileChangeEvent(event: any, selector: any): void {
+  fileChangeEvent(event: any): void {
     var instance = M.Modal.getInstance(document.querySelector(`#modal1`));
+    var selector = event.target.id.replace("image", "photo");
     instance.open();
     this.imageChangedEvent = event;
     this.imageElement = <HTMLElement>document.querySelector(`#${selector}`);

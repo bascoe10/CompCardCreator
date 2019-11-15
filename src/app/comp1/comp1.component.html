@@ -47,40 +47,26 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="input-field">
-            <input
-              #imageInput
-              type="file"
-              accept="image/*"
-              (change)="fileChangeEvent($event, 'photo-1')"
-              id="image-1"
-            />
-            <label for="image-1">Image 1</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field">
-            <input
-              #imageInput
-              type="file"
-              accept="image/*"
-              (change)="fileChangeEvent($event, 'photo-2')"
-              id="image-2"
-            />
-            <label for="image-2">Image 2</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field">
-            <input
-              #imageInput
-              type="file"
-              accept="image/*"
-              (change)="fileChangeEvent($event, 'photo-3')"
-              id="image-3"
-            />
-            <label for="image-3">Image 3</label>
+        <div class="row" *ngFor="let i of photoIndices">
+          <div class="file-field input-field">
+            <div class="btn">
+              <span>File</span>
+              <input type="file" multiple />
+              <input
+                #imageInput
+                type="file"
+                accept="image/*"
+                (change)="fileChangeEvent($event)"
+                id="image-{{ i }}"
+              />
+            </div>
+            <div class="file-path-wrapper">
+              <input
+                class="file-path validate"
+                type="text"
+                placeholder="Upload Image for Photo {{ i }}"
+              />
+            </div>
           </div>
         </div>
       </div>

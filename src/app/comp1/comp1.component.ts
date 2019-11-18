@@ -72,7 +72,7 @@ export class Comp1Component implements OnInit, AfterViewInit {
 
   adjustToFitDiv() {
     const name = document.querySelector("#name-id") as HTMLElement;
-    const style = getComputedStyle(name);
+    let style = getComputedStyle(name);
 
     if (!style) style = name.style;
     let fontSize = parseInt(style.fontSize);

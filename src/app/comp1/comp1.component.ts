@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, AfterViewInit } from "@angular/core";
 import { ImageCroppedEvent } from "ngx-image-cropper";
 
 import html2canvas from "html2canvas";
@@ -11,26 +11,30 @@ import { Model } from "../models/model";
   templateUrl: "./comp1.component.html",
   styleUrls: ["./comp1.component.sass"]
 })
-export class Comp1Component implements OnInit {
+export class Comp1Component implements OnInit, AfterViewInit {
   model = new Model();
   photoIndices = [1, 2, 3];
+  imageChangedEvent: any = "";
+  croppedImage: any = "";
+  imageElement: HTMLElement;
 
   constructor() {}
 
   ngOnInit() {}
 
   ngAfterViewInit() {
+    console.log("Afterviewinit");
     document.addEventListener("DOMContentLoaded", () => {
-      var elems = document.querySelectorAll(".modal");
-      var options = {};
-      var instances = M.Modal.init(elems, options);
+      const elems = document.querySelectorAll(".modal");
+      M.Modal.init(elems, {});
       M.updateTextFields();
     });
 
     document.addEventListener("scroll", () => {
-      console.log("Here");
-      let compCardContainer = document.querySelector("#comp-card-container");
-      let cardOffset = compCardContainer.offsetTop;
+      const compCardContainer = document.querySelector(
+        "#comp-card-container"
+      ) as HTMLElement;
+      const cardOffset = compCardContainer.offsetTop;
 
       if (window.pageYOffset > cardOffset) {
         compCardContainer.classList.add("sticky");
@@ -40,16 +44,12 @@ export class Comp1Component implements OnInit {
     });
   }
 
-  imageChangedEvent: any = "";
-  croppedImage: any = "";
-  imageElement: HTMLElement;
-
   fileChangeEvent(event: any): void {
-    var instance = M.Modal.getInstance(document.querySelector(`#modal1`));
-    var selector = event.target.id.replace("image", "photo");
+    const instance = M.Modal.getInstance(document.querySelector(`#modal1`));
+    const selector = event.target.id.replace("image", "photo");
     instance.open();
     this.imageChangedEvent = event;
-    this.imageElement = <HTMLElement>document.querySelector(`#${selector}`);
+    this.imageElement = document.querySelector(`#${selector}`) as HTMLElement;
   }
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;
@@ -71,11 +71,11 @@ export class Comp1Component implements OnInit {
   }
 
   adjustToFitDiv() {
-    let name = <HTMLElement>document.querySelector("#name-id");
-    let style = getComputedStyle(name);
+    const name = document.querySelector("#name-id") as HTMLElement;
+    const style = getComputedStyle(name);
 
     if (!style) style = name.style;
-    var fontSize = parseInt(style.fontSize);
+    let fontSize = parseInt(style.fontSize);
 
     if (name.scrollWidth < 256.22) {
       name.style.fontSize = "40px";
@@ -93,7 +93,7 @@ export class Comp1Component implements OnInit {
     const file: File = imageInput.files[0];
     const reader = new FileReader();
 
-    let div = <HTMLElement>document.querySelector(`#${selector}`);
+    const div = document.querySelector(`#${selector}`) as HTMLElement;
 
     reader.addEventListener("load", (event: any) => {
       div.style.background = `url(${event.target.result})`;
@@ -107,8 +107,6 @@ export class Comp1Component implements OnInit {
     window.scrollTo(0, 0);
     html2canvas(document.querySelector("#comp-card")).then(function(canvas) {
       window.location.assign(canvas.toDataURL());
-      // window.open().document.write('<img src="' + canvas.toDataURL() + '" />');
-      // document.body.appendChild(canvas);
     });
   }
 }
